@@ -18,4 +18,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/resume/create', [ResumeController::class, 'store']);
     Route::delete('/resume/delete/{id}', [ResumeController::class, 'destroy'])
     ->where(['id' => '[0-9]+']);
+    Route::get('/resume/{id}', [ResumeController::class, 'show'])
+    ->where(['id' => '[0-9]+']);
 });

@@ -24,6 +24,20 @@ class ResumeController extends Controller
     }
 
     /**
+     * Get the specified resource by id
+     */
+    public function show(int $id){
+        $resume = Resume::find($id);
+
+        if (!$resume)
+            return response()->json(status:204);
+
+        return response()->json([
+            'data' => $resume,
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Resume $resume)
