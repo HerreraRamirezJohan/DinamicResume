@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Resume\StoreResumeRequest;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 
@@ -26,14 +25,21 @@ class ResumeController extends Controller
     /**
      * Get the specified resource by id
      */
-    public function show(int $id){
+    public function show(Request $request, int $id)
+    {
         $resume = Resume::find($id);
 
         if (!$resume)
-            return response()->json(status:204);
+            return response()->json(status: 204);
+
+        $contactInformation = $request->user()->contactInformation;
 
         return response()->json([
-            'data' => $resume,
+            'message' => 'Element founded successfully',
+            'data' => [
+                'resume' => $resume,
+                'contact_information' => $contactInformation,
+            ],
         ]);
     }
 

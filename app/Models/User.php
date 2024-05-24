@@ -45,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get a relashionship with ContactInformation
+     *
+     * @return array<string, string>
+     */
+    public function contactInformation(){
+        return $this->hasOne(ContactInformation::class);
+    }
 }
