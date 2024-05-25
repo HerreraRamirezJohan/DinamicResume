@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Resume;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ResumeController extends Controller
 {
@@ -12,8 +13,9 @@ class ResumeController extends Controller
      */
     public function store(Request $request)
     {
+        $user = $request->user();
         $resume = Resume::create([
-            "user_id" => $request->user()->id,
+            "user_id" => $user->id,
         ]);
 
         return response()->json([
@@ -31,6 +33,8 @@ class ResumeController extends Controller
 
         if (!$resume)
             return response()->json(status: 204);
+
+        Gate::authorize('view', $resume);
 
         $contactInformation = $request->user()->contactInformation;
 
