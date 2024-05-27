@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ContactInformationController;
 use App\Http\Controllers\ResumeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     ->where(['id' => '[0-9]+']);
     Route::get('/resume/{id}', [ResumeController::class, 'show'])
     ->where(['id' => '[0-9]+']);
+
+    Route::patch('/contact-information/update/{id}', [ContactInformationController::class, 'update']);
 });

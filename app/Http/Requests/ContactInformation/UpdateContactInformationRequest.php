@@ -22,12 +22,12 @@ class UpdateContactInformationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email_contact' => 'string|email',
-            'github_url' => 'string|url:https',
-            'linkedin_url' => 'string|url:https',
-            'phone' => 'string|digits_between:8,14',
-            'country' => 'string',
-            'city' => 'string',
+            'email_contact' => 'string|email|sometimes',
+            'github_url' => 'string|url:https|sometimes',
+            'linkedin_url' => 'string|url:https|sometimes',
+            'phone' => 'string|digits_between:8,14|sometimes',
+            'country' => 'string|sometimes',
+            'city' => 'string|sometimes',
         ];
     }
 }
