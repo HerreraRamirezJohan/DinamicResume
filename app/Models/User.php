@@ -48,10 +48,14 @@ class User extends Authenticatable
 
     /**
      * Get a relashionship with ContactInformation
-     *
-     * @return array<string, string>
      */
     public function contactInformation(){
         return $this->hasOne(ContactInformation::class);
+    }
+    /**
+     * Get a relashionship with WorkExperience
+     */
+    public function workExperience(){
+        return $this->hasMany(WorkExperience::class);
     }
 }
