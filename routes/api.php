@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::controller(WorkExperienceController::class)->prefix('work-experiences')->group(function (){
         Route::post('/', 'store');
-
+        Route::get('/', 'getAll');
+        Route::put('/{id}', 'update')->where(['id' => '[0-9]+']);
     });
 });
