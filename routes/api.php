@@ -19,10 +19,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::controller(ResumeController::class)->prefix('resumes')->group(function () {
         Route::post('/', 'store');
-        Route::delete('/{id}', 'destroy')
-            ->where(['id' => '[0-9]+']);
-        Route::get('/{id}', 'show')
-            ->where(['id' => '[0-9]+']);
+        Route::get('/', 'getAll');
+        Route::delete('/{id}', 'destroy')->where(['id' => '[0-9]+']);
+        Route::get('/{id}', 'show')->where(['id' => '[0-9]+']);
+        Route::post('/work-experience/{id}')->where(['id' => '[0-9]+']);
     });
 
 

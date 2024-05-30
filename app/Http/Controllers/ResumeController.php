@@ -47,12 +47,12 @@ class ResumeController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Resume $resume)
-    {
-        //
+    public function getAll(Request $request){
+        $user = $request->user();
+
+        return response()->json([
+            'data' => $user->resumes,
+        ]);
     }
 
     /**

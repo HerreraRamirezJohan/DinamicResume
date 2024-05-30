@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Resume extends Model
 {
@@ -12,4 +14,11 @@ class Resume extends Model
     protected $fillable = [
         'user_id',
     ];
+
+    public function workExperience() : BelongsToMany{
+        return $this->belongsToMany(WorkExperience::class, 'resume_workexperience');
+    }
+    public function user() : BelongsTo{
+        return $this->belongsTo(User::class);
+    }
 }
