@@ -41,7 +41,5 @@ class WorkExperienceController extends Controller
             'message' => 'Element saved successfully',
             'data' => $workExperience
         ]);
-
-
     }
 }

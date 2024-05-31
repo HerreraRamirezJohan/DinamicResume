@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class WorkExperience extends Model
 {
@@ -16,4 +17,8 @@ class WorkExperience extends Model
         'end_date',
         'description'
     ];
+
+    public function resume() : BelongsToMany {
+        return $this->belongsToMany(Resume::class, 'resume_workexperience');
+    }
 }

@@ -30,6 +30,8 @@ return new class extends Migration
            $table->foreignIdFor(Resume::class);
            $table->foreignIdFor(WorkExperience::class);
            $table->timestamps();
+
+           $table->unique(['resume_id', 'work_experience_id']);
         });
     }
 

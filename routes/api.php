@@ -22,7 +22,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', 'getAll');
         Route::delete('/{id}', 'destroy')->where(['id' => '[0-9]+']);
         Route::get('/{id}', 'show')->where(['id' => '[0-9]+']);
-        Route::post('/work-experience/{id}')->where(['id' => '[0-9]+']);
+        Route::post('/{resume}/work-experience/{work_id}', 'addWorkExperience');
     });
 
 

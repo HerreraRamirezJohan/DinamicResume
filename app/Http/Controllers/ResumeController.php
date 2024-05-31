@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resume;
+use App\Models\WorkExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -73,6 +74,23 @@ class ResumeController extends Controller
         return response()->json([
             'message' => 'Deleted successfully',
             'data' => $resume,
+        ]);
+    }
+
+    public function addWorkExperience(int $resume_id, int $work_id){
+        $resume = Resume::findOrFail($resume_id);
+        $workExperience = WorkExperience::findOrFail($work_id);
+
+        Gate::authorize('addWorkExperience', [$resume, $workExperience]);
+
+        try {
+            $resume->workExperience()->attach($workExperience->id);
+        } catch (\Throwable $th) {
+            throw new \Exception('This work experice has already been saved');
+        }
+
+        return response()->json([
+            'message' => 'Added successfully',
         ]);
     }
 }
