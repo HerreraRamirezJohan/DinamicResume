@@ -16,7 +16,8 @@ class Resume extends Model
     ];
 
     protected $hidden = [
-        'pivot'
+        'pivot',
+        'user_id'
     ];
 
     public function workExperience() : BelongsToMany{

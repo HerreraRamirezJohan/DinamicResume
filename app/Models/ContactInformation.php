@@ -18,6 +18,11 @@ class ContactInformation extends Model
         'country',
         'city',
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'user_id',
+    ];
 
     public function __construct(array $attributes = [])
     {
