@@ -23,6 +23,9 @@ class Resume extends Model
     public function workExperience() : BelongsToMany{
         return $this->belongsToMany(WorkExperience::class, 'resume_workexperience');
     }
+    public function education() : BelongsToMany{
+        return $this->belongsToMany(Education::class, 'resume_education');
+    }
     public function user() : BelongsTo{
         return $this->belongsTo(User::class);
     }

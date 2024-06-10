@@ -59,6 +59,12 @@ class User extends Authenticatable
     public function workExperience(){
         return $this->hasMany(WorkExperience::class);
     }
+    /**
+     * Get a relashionship with Education
+     */
+    public function education(){
+        return $this->hasMany(Education::class);
+    }
 
     /**
      * Get a relashionship with Resume

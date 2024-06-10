@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactInformationController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Http\Request;
@@ -29,6 +30,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::patch('/contact-information/{id}', [ContactInformationController::class, 'update']);
 
     Route::controller(WorkExperienceController::class)->prefix('work-experiences')->group(function (){
+        Route::post('/', 'store');
+        Route::get('/', 'getAll');
+        Route::put('/{id}', 'update')->where(['id' => '[0-9]+']);
+    });
+
+    Route::controller(EducationController::class)->prefix('education')->group(function (){
         Route::post('/', 'store');
         Route::get('/', 'getAll');
         Route::put('/{id}', 'update')->where(['id' => '[0-9]+']);
