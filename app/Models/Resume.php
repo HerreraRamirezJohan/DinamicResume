@@ -15,6 +15,10 @@ class Resume extends Model
         'user_id',
     ];
 
+    protected $hidden = [
+        'pivot'
+    ];
+
     public function workExperience() : BelongsToMany{
         return $this->belongsToMany(WorkExperience::class, 'resume_workexperience');
     }

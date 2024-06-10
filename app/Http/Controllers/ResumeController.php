@@ -30,7 +30,7 @@ class ResumeController extends Controller
      */
     public function show(Request $request, int $id)
     {
-        $resume = Resume::find($id);
+        $resume = Resume::find($id)->load('workExperience');
 
         if (!$resume)
             return response()->json(status: 204);
