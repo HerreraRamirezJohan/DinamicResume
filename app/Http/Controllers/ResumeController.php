@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use App\Models\Resume;
 use App\Models\WorkExperience;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class ResumeController extends Controller
      */
     public function show(Request $request, int $id)
     {
-        $resume = Resume::find($id)->load('workExperience');
+        $resume = Resume::find($id)->load(['workExperience', 'education']);
 
         if (!$resume)
             return response()->json(status: 204);
@@ -87,6 +88,22 @@ class ResumeController extends Controller
             $resume->workExperience()->attach($workExperience->id);
         } catch (\Throwable $th) {
             throw new \Exception('This work experice has already been saved');
+        }
+
+        return response()->json([
+            'message' => 'Added successfully',
+        ]);
+    }
+    public function addEducation(int $resume_id, int $education_id){
+        $resume = Resume::findOrFail($resume_id);
+        $education = Education::findOrFail($education_id);
+
+        Gate::authorize('addEducation', [$resume, $education]);
+
+        try {
+            $resume->education()->attach($education->id);
+        } catch (\Throwable $th) {
+            throw new \Exception('This education element has already been saved');
         }
 
         return response()->json([

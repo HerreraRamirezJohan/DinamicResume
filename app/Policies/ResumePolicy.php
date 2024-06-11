@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Education;
 use App\Models\Resume;
 use App\Models\User;
 use App\Models\WorkExperience;
@@ -26,6 +27,15 @@ class ResumePolicy
         WorkExperience $workExperience
     ) {
         return $user->id === $resume->user_id && $user->id === $workExperience->user_id
+            ? Response::allow()
+            : Response::denyAsNotFound('The resume or work experience was not found');
+    }
+    public function addEducation(
+        User $user,
+        Resume $resume,
+        Education $education
+    ) {
+        return $user->id === $resume->user_id && $user->id === $education->user_id
             ? Response::allow()
             : Response::denyAsNotFound('The resume or work experience was not found');
     }

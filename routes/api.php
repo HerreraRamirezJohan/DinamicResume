@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{id}', 'destroy')->where(['id' => '[0-9]+']);
         Route::get('/{id}', 'show')->where(['id' => '[0-9]+']);
         Route::post('/{resume}/work-experience/{work_id}', 'addWorkExperience');
+        Route::post('/{resume}/education/{education_id}', 'addEducation');
     });
 
 
